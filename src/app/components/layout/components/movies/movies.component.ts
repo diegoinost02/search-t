@@ -3,11 +3,12 @@ import { MoviesService } from '../../../../services/movies.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll'; // npm install ngx-infinite-scroll --save
 import { MoviesResponse } from '../../../../models/interface.movie';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [InfiniteScrollModule],
+  imports: [InfiniteScrollModule, CommonModule],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.css'
 })

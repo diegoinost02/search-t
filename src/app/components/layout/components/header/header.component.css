@@ -1,5 +1,5 @@
 header{
-    height: 600px;
+    height: 550px;
     border-bottom: 1px solid rgba(189, 189, 189, 0.164);
     display: flex;
     flex-direction: column;
@@ -8,8 +8,18 @@ header{
 
     background-image: linear-gradient(
         to bottom,
-        #101014, #16143f
+        #1a1a23, #18172d
     );
+
+    /* background-image: linear-gradient(
+        to top,
+        #131319, #18172d
+    ); */
+
+    /* background-image: linear-gradient(
+        to bottom,
+        #101014, #16143f
+    ); */
 }
 .container{
     display: flex;
@@ -17,7 +27,8 @@ header{
     align-items: center;
 }
 h2{
-    font-size: 30px;
+    /* font-size: 30px; */
+    font-size: clamp(20px, 5vw, 30px);
 }
 .search-input{
     background-color: rgba(135, 135, 135, 0.156);
@@ -28,4 +39,15 @@ h2{
     padding: 0 20px;
     outline: none;
     font-size: 15px;
+}
+
+@media(width <= 650px) {
+    .search-input{
+        width: 80vw;
+    }
+}
+@media(height <= 750px) {
+    header{
+        height: 60vh;
+    }
 }

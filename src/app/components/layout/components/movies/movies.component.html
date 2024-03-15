@@ -13,17 +13,26 @@
         </h3>
         <div class="movies-container">
             @for (movie of movies$()?.results; track $index) {
-                @if (movie) {
-                    <article class="movie">
+                <article class="movie">
+                    <div class="movie-content">
                         <img
-                            [src]="imgPath + movie.poster_path"
-                            alt="title"
-                            class="movie-poster">
-                        <h4 class="movie-title">
-                            {{ movie.title }}
-                        </h4>
-                    </article>
-                }
+                        [src]="imgPath + movie.poster_path"
+                        alt="title"
+                        class="movie-poster">
+                        <div class="text">
+                            <h4 class="movie-title">
+                                {{ movie.title }}
+                            </h4>
+                            <p>
+                                {{movie.vote_average | number: '1.1-1'}}
+                                <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+                                </svg>
+                            </p>
+                        </div>
+                    </div>
+                </article>
             }
         </div>
     </div>
