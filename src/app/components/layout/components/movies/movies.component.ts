@@ -1,7 +1,8 @@
-import { Component, OnInit, effect, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { MoviesService } from '../../../../services/movies.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll'; // npm install ngx-infinite-scroll --save
 import { MoviesResponse } from '../../../../models/interface.movie';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-movies',
@@ -13,6 +14,7 @@ import { MoviesResponse } from '../../../../models/interface.movie';
 export class MoviesComponent implements OnInit{
 
   moviesService = inject(MoviesService);
+  destroyRef = inject(DestroyRef);
 
   movies$ = this.moviesService.movies$;
   searching$ = this.moviesService.searching$;
@@ -22,7 +24,9 @@ export class MoviesComponent implements OnInit{
   ytUrl: string = 'https://www.youtube.com/embed/';
 
   ngOnInit(): void {
-    this.moviesService.getPopularMovies(this.page$()).subscribe({
+    this.moviesService.getPopularMovies(this.page$())
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe({
       next: (movies: MoviesResponse) => {
         if (movies) {
           this.moviesService.movies$.update(() => movies);
@@ -38,7 +42,9 @@ export class MoviesComponent implements OnInit{
   }
 
   getMovies() {
-    this.moviesService.getPopularMovies(this.page$()).subscribe({
+    this.moviesService.getPopularMovies(this.page$())
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe({
       next: (newMovies: MoviesResponse) => {
         this.moviesService.movies$.update( movies => {
           movies!.results = [...movies!.results, ...newMovies!.results];

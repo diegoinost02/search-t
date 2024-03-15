@@ -1,8 +1,9 @@
-import { Component, OnInit, effect, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { MoviesService } from '../../../../services/movies.service';
 import { MoviesResponse } from '../../../../models/interface.movie';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ import { MoviesResponse } from '../../../../models/interface.movie';
 export class HeaderComponent implements OnInit{
 
   moviesService = inject(MoviesService);
+  destroyRef = inject(DestroyRef);
 
   movies$ = this.moviesService.movies$;
   searching$ = this.moviesService.searching$;
@@ -27,33 +29,43 @@ export class HeaderComponent implements OnInit{
       .pipe(
         debounceTime(300)
       )
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
-        this.searchMovie();
+        this.search();
       })
   }
 
-  searchMovie() {
+  search() {
     if(this.Input.value) {
-      
-      if(this.Input.dirty) {
-        this.page$.update(() => 1);
-      }
-
-      this.searching$.update(() => true);
-
-      this.moviesService.searchMovie(this.Input.value, this.page$()).subscribe({
-        next: (movies: MoviesResponse) => {
-          this.moviesService.movies$.update(() => movies);
-        }
-      });
+      this.searchMovie();
     } else {
-      this.searching$.update(() => false);
+      this.getPopular();
+    }
+  }
+
+  searchMovie() {
+    this.searching$.update(() => true);
+    if(this.Input.dirty) {
       this.page$.update(() => 1);
-      this.moviesService.getPopularMovies(this.page$()).subscribe({
+    }
+    this.moviesService.searchMovie(this.Input.value, this.page$())
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe({
+      next: (movies: MoviesResponse) => {
+        this.moviesService.movies$.update(() => movies);
+      }
+    });
+  }
+
+  getPopular() {
+    this.searching$.update(() => false);
+      this.page$.update(() => 1);
+      this.moviesService.getPopularMovies(this.page$())
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
         next: (movies: MoviesResponse) => {
           this.moviesService.movies$.update(() => movies);
         }
       });
-    }
   }
 }
