@@ -1,0 +1,36 @@
+section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #100f29;
+}
+.container{
+    width: 800px;
+
+    .title{
+        margin-top: 35px;
+        margin-bottom: 35px;
+        color: rgb(212, 212, 212);
+    }
+}
+.movies-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.movie{
+    /* background-color: rgba(0, 255, 255, 0.401); */
+    img{
+        aspect-ratio: 1/1.5;
+        width: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+}
+.movie-title{
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-weight: 500;
+    color: rgb(189, 189, 189);
+}

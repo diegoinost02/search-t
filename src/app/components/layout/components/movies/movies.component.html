@@ -1,0 +1,30 @@
+<section>
+    <div class="container"
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="1000"
+        (scrolled)="appendMovies()">
+        <h3 class="title">
+            @if (searching$() === false) {
+                Trending Movies
+            } @else {
+                Results
+            }
+        </h3>
+        <div class="movies-container">
+            @for (movie of movies$()?.results; track $index) {
+                @if (movie) {
+                    <article class="movie">
+                        <img
+                            [src]="imgPath + movie.poster_path"
+                            alt="title"
+                            class="movie-poster">
+                        <h4 class="movie-title">
+                            {{ movie.title }}
+                        </h4>
+                    </article>
+                }
+            }
+        </div>
+    </div>
+</section>
