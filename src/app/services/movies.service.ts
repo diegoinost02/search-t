@@ -18,7 +18,6 @@ export class MoviesService {
   movies$ = signal<MoviesResponse | null>(null);
   searching$ = signal<boolean>(false);
   page$ = signal<number>(1);
-  // input$ = signal<FormControl>(new FormControl('', { nonNullable: true }));
 
   getPopularMovies(page: number) {
     return this.http.get<MoviesResponse>(`${this.apiUrl}/movie/popular?page=${page}`, {

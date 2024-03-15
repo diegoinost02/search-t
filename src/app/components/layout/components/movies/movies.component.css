@@ -20,10 +20,31 @@ section{
     gap: 20px;
 }
 
+/* Para hacer una fila */
+/* .movies-container{
+    display: flex;
+    overflow-y: auto;
+    gap: 20px;
+}
+.movie-content{
+    transition: transform 0.3s ease;
+
+    img{
+        aspect-ratio: 1/1.5;
+        height: 250px;
+        border-radius: 7px;
+        object-fit: cover;
+    }
+} */
+
 .movie{
     padding: 2px 5px 5px 5px;
     cursor: pointer;
     border-radius: 12px;
+
+    /* img{
+        max-width: 100px;
+    } */
 }
 
 .movie-content{
@@ -64,7 +85,6 @@ section{
         height: 16px;
     }
 }
-
 @media(width <= 850px) {
     .container{
         width: 80vw;
