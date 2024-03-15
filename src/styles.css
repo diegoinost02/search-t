@@ -9,10 +9,9 @@ body { margin: 0;}
 }
 
 :root{
-    color-scheme: light dark;
+    /* color-scheme: light dark; */
     background-color: #14141a;
-}
-
+} 
 
 h1 ,h2, h3, h4, h5, h6{
     color: white;
@@ -22,3 +21,10 @@ p{
     color: white;
     text-wrap: pretty;
 }
+
+.background-dialog {
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.611);
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

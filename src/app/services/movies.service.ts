@@ -3,8 +3,7 @@ import { environment } from '../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { MoviesResponse } from '../models/interface.movie';
 import { Video } from '../models/interface.video';
-import { tap } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -39,13 +38,12 @@ export class MoviesService {
     }).pipe(tap(movies => this.movies$.update(() => movies)));
   }
 
-  // https://www.youtube.com/embed/videoKey
   getVideoMovie(movieId: number) {
     return this.http.get<Video>(`${this.apiUrl}/movie/${movieId}/videos`, {
       headers: {
           accept: 'application/json',
           Authorization: `Bearer ${this.apiToken}`
       }
-    });
+    })
   }
 }

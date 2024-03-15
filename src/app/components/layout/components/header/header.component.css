@@ -8,7 +8,7 @@ header{
 
     background-image: linear-gradient(
         to bottom,
-        #1a1a23, #18172d
+        #1a1a23, #171531
     );
 
     /* background-image: linear-gradient(
@@ -22,6 +22,7 @@ header{
     ); */
 }
 .container{
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,6 +33,7 @@ h2{
 }
 .search-input{
     background-color: rgba(135, 135, 135, 0.156);
+    color: white;
     width: 500px;
     height: 55px;
     border-radius: 20px;

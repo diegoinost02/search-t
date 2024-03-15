@@ -13,7 +13,7 @@
         </h3>
         <div class="movies-container">
             @for (movie of movies$()?.results; track $index) {
-                <article class="movie">
+                <article class="movie" (click)="openMovie(movie)">
                     <div class="movie-content">
                         <img
                         [src]="imgPath + movie.poster_path"
