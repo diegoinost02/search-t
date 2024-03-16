@@ -19,6 +19,13 @@ nav{
         padding: 0 20px;
     }
 }
+@media(width <= 300px) {
+    .container{
+        .ancors-container{
+            gap: 10px;
+        }
+    }
+}
 li{
     list-style-type: none;
 }
