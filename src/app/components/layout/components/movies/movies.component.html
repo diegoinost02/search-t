@@ -15,10 +15,17 @@
             @for (movie of movies$()?.results; track $index) {
                 <article class="movie" (click)="openMovie(movie)">
                     <div class="movie-content">
-                        <img
-                        [src]="imgPath + movie.poster_path"
-                        alt="title"
-                        class="movie-poster">
+                        @if (movie.poster_path != null) {
+                            <img
+                            [src]="imgPath + movie.poster_path"
+                            alt="title"
+                            class="movie-poster">
+                        } @else {
+                            <img
+                            src="/assets/no-poster.png"
+                            alt="title"
+                            class="movie-poster">
+                        }
                         <div class="text">
                             <h4 class="movie-title">
                                 {{ movie.title }}

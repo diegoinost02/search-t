@@ -18,9 +18,10 @@ section{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    margin-bottom: 20px;
 }
 
-/* Para hacer una fila */
+/* Para hacer en fila */
 /* .movies-container{
     display: flex;
     overflow-y: auto;
