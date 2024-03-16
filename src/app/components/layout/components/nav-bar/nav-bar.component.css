@@ -5,17 +5,17 @@ nav{
     width: 100%;
     background-color: #1a1a23;
 }
-ul{
+.container{
     display: flex;
     align-items: center;
-    /* justify-content: flex-start; */
     justify-content: space-between;
     gap: 20px;
     padding: 0 40px;
     width: 100%;
 }
+
 @media(width <= 400px) {
-    ul {
+    .container {
         padding: 0 20px;
     }
 }
